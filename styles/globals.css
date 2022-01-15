@@ -5,9 +5,9 @@
 @tailwind utilities;
 
 @layer base {
-  * {
+  body {
     font-family: "Hind Siliguri", "Noto Sans JP", sans-serif;
-    /* color: #595757; */
+    color: #595757;
   }
 }
 

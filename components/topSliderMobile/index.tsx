@@ -35,7 +35,7 @@ function TopSliderMobile(): any {
           {pic.map((v, i) => {
             return (
               <div key={i}>
-                <div className="relative w-full pb-[130%]">
+                <div className="w-full pb-[130%]">
                   <Image src={v} alt="" layout="fill" objectFit="cover" />
                 </div>
               </div>
@@ -43,7 +43,7 @@ function TopSliderMobile(): any {
           })}
         </Slider>
       </div>
-      <div className="hidden lg:block w-[60%]">
+      <div className="relative hidden lg:block w-[60%]">
         <Slider {...settings}>
           {picComputer.map((v, i) => {
             return (

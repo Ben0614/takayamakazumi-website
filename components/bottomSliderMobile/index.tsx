@@ -39,7 +39,7 @@ function BottomSliderMobile(props: ShowPic) {
                 props.setShowPic(i);
               }}
             >
-              <div className="relative rounded-full overflow-hidden w-full pb-[100%] cursor-pointer">
+              <div className="relative rounded-full even:animate-shape2 odd:animate-shape3 overflow-hidden w-full pb-[100%] cursor-pointer">
                 <Image
                   src={v}
                   alt=""
