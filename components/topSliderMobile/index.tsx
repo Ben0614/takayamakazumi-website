@@ -54,7 +54,7 @@ function TopSliderMobile(): any {
                     alt=""
                     layout="fill"
                     objectFit="cover"
-                    sizes="60vw"
+                    sizes="30vw"
                   />
                 </div>
               </div>

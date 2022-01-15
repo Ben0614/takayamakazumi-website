@@ -116,7 +116,11 @@ module.exports = {
   },
   plugins: [
     plugin(function ({ addVariant }) {
+      addVariant("one", "&:nth-child(1)");
+      addVariant("two", "&:nth-child(2)");
+      addVariant("three", "&:nth-child(3)");
       addVariant("four", "&:nth-child(4)");
+      addVariant("five", "&:nth-child(5)");
     }),
   ],
 };

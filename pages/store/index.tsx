@@ -4,6 +4,7 @@ import storeSeesion from "redux-persist/lib/storage/session";
 // import storage from 'redux-persist/lib/storage' // defaults to localStorage
 import SliderIndexReducer from "./reducers/sliderIndexReducer";
 import MenuReducer from "./reducers/menuReducer";
+import NewsRefReducer from "./reducers/newsRefReducer";
 
 type RootStore = ReturnType<typeof rootReducer>;
 
@@ -15,6 +16,7 @@ const storeConfig = {
 const rootReducer = combineReducers({
   sliderIndex: SliderIndexReducer,
   menu: MenuReducer,
+  news: NewsRefReducer,
 });
 
 const myPersistReducer = persistReducer<RootStore, any>(

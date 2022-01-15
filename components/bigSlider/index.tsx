@@ -22,13 +22,15 @@ const bigPic = [
 
 
 function BigSlider() {
+  // 獲取被點擊的照片的index
   const getPicIndex = useSelector((state: SliderIndex) => {
     return state.sliderIndex.index;
   });
 
-
+  // ref slider
   const slider = useRef<Slider>(null);
 
+  // 一掛載就根據index移動到指定的照片
   useEffect(() => {
     slider.current!.slickGoTo(getPicIndex);
   }, [getPicIndex]);

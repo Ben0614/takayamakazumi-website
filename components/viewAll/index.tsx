@@ -7,6 +7,7 @@ interface Props {
 function ViewAll(props: Props) {
   return (
     <>
+    {/* 根據傳來的class 來決定手機顯示或桌機顯示 */}
       <div
         className={`${props.className} text-center text-area-view mb-6 cursor-pointer hover:opacity-70 lg:block`}
       >

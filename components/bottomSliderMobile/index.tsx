@@ -1,16 +1,20 @@
-import React,{ useCallback } from "react";
+import React, { useCallback } from "react";
 import Image from "next/image";
 import Slider from "react-slick";
 import { useDispatch } from "react-redux";
 
 function BottomSliderMobile() {
   const dispatch = useDispatch();
-  const picIndex = useCallback((i) => {
-    dispatch({
-      type: "pic_index",
-      payload: { index: i },
-    });
-  }, [dispatch]);
+  // 發送照片的index
+  const picIndex = useCallback(
+    (i) => {
+      dispatch({
+        type: "pic_index",
+        payload: { index: i },
+      });
+    },
+    [dispatch]
+  );
 
   const pic = [
     "http://localhost:3000/images/smallGallery/pic-01.jpg",
@@ -37,6 +41,7 @@ function BottomSliderMobile() {
       <Slider {...settings}>
         {pic.map((v, i) => {
           return (
+            // px-2 讓照片之間有間隔
             <div
               className="px-2"
               key={i}
