@@ -54,7 +54,7 @@ function BigSlider() {
           <div
             key={i}
             className={
-              "relative w-full pb-[130%] mx-auto mb-5 lg:w-1/4 lg:pb-[130%] z-50"
+              "relative w-full pb-[130%] mx-auto mb-5 lg:w-1/4 lg:pb-[130%]"
             }
           >
             <Image

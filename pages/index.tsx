@@ -431,7 +431,7 @@ const Home: NextPage = () => {
             <div
               className={
                 getPicIndex !== null
-                  ? `transition duration-500 flex flex-col justify-center items-center fixed z-40 top-0 left-0 w-screen h-screen bg-white`
+                  ? `transition duration-500 flex flex-col justify-center items-center fixed z-50 top-0 left-0 w-screen h-screen bg-white`
                   : `transition duration-500 flex flex-col justify-center items-center fixed top-0 left-0 w-screen h-screen opacity-0 -z-20`
               }
             >
