@@ -1,12 +1,17 @@
-import React from "react";
+import React,{ useCallback } from "react";
 import Image from "next/image";
 import Slider from "react-slick";
+import { useDispatch } from "react-redux";
 
-interface ShowPic {
-  setShowPic: Function;
-}
+function BottomSliderMobile() {
+  const dispatch = useDispatch();
+  const picIndex = useCallback((i) => {
+    dispatch({
+      type: "pic_index",
+      payload: { index: i },
+    });
+  }, [dispatch]);
 
-function BottomSliderMobile(props: ShowPic) {
   const pic = [
     "http://localhost:3000/images/smallGallery/pic-01.jpg",
     "http://localhost:3000/images/smallGallery/pic-02.jpg",
@@ -36,7 +41,7 @@ function BottomSliderMobile(props: ShowPic) {
               className="px-2"
               key={i}
               onClick={() => {
-                props.setShowPic(i);
+                picIndex(i);
               }}
             >
               <div className="relative rounded-full even:animate-shape2 odd:animate-shape3 overflow-hidden w-full pb-[100%] cursor-pointer">

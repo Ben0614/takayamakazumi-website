@@ -1,6 +1,13 @@
 import React, { useEffect, useState, useRef } from "react";
 import Image from "next/image";
 import Slider from "react-slick";
+import { useSelector } from "react-redux";
+
+interface SliderIndex {
+  sliderIndex: {
+    index: number;
+  };
+}
 
 const bigPic = [
   "http://localhost:3000/images/bigGallery/pic-01.jpg",
@@ -13,17 +20,18 @@ const bigPic = [
   "http://localhost:3000/images/bigGallery/pic-08.jpg",
 ];
 
-interface Props {
-  showPic: number | null;
-  setShowPic: Function;
-}
 
-function BigSlider(props: Props) {
+function BigSlider() {
+  const getPicIndex = useSelector((state: SliderIndex) => {
+    return state.sliderIndex.index;
+  });
+
+
   const slider = useRef<Slider>(null);
 
   useEffect(() => {
-    slider.current!.slickGoTo(props.showPic!);
-  }, [props.showPic]);
+    slider.current!.slickGoTo(getPicIndex);
+  }, [getPicIndex]);
 
   const settings = {
     arrows: true,

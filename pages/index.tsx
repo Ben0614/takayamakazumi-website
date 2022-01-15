@@ -1,5 +1,6 @@
 import type { NextPage } from "next";
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState, useRef, useCallback } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import Image from "next/image";
 import Link from "next/link";
 import { FiInstagram } from "react-icons/Fi";
@@ -19,6 +20,17 @@ const pic = [
   "http://localhost:3000/images/smallGallery/pic-07.jpg",
   "http://localhost:3000/images/smallGallery/pic-08.jpg",
 ];
+
+interface SliderIndex {
+  sliderIndex: {
+    index: number;
+  };
+}
+interface menu {
+  menu: {
+    isShow: boolean;
+  };
+}
 
 const Home: NextPage = () => {
   const MenuIcon = useRef<HTMLDivElement>(null);
@@ -58,13 +70,43 @@ const Home: NextPage = () => {
   ];
   const footer = ["HOME", "NEWS", "SCHEDULE", "PROFILE", "GALLERY", "CONTACT"];
 
-  const [showPic, setShowPic] = useState<number | null>(null);
-  const [menuShow, setMenuShow] = useState<number>(0);
-  // console.log(menuShow);
+  const dispatch = useDispatch();
+
+  const picIndex = useCallback(
+    (i) => {
+      dispatch({
+        type: "pic_index",
+        payload: { index: i },
+      });
+    },
+    [dispatch]
+  );
+
+  const getPicIndex = useSelector((state: SliderIndex) => {
+    return state.sliderIndex.index;
+  });
+
+  const MenuIsShow = useCallback(
+    (state) => {
+      dispatch({
+        type: "is_show",
+        payload: { isShow: state },
+      });
+    },
+    [dispatch]
+  );
+
+  const getMenuState = useSelector((state: menu) => {
+    return state.menu;
+  });
+
+  console.log("getMenuState", getMenuState.isShow);
+
+  // console.log("getPicIndex", getPicIndex);
 
   if (MenuIcon.current) {
     MenuIcon.current.addEventListener("click", function () {
-      if (menuShow) {
+      if (getMenuState.isShow) {
         MenuIcon.current!.classList.add("animate-menu");
       } else {
         MenuIcon.current!.classList.remove("animate-menu");
@@ -73,7 +115,7 @@ const Home: NextPage = () => {
   }
   if (MenuIconMobile.current) {
     MenuIconMobile.current.addEventListener("click", function () {
-      if (menuShow) {
+      if (getMenuState.isShow) {
         MenuIconMobile.current!.classList.add("animate-menu");
       } else {
         MenuIconMobile.current!.classList.remove("animate-menu");
@@ -82,45 +124,51 @@ const Home: NextPage = () => {
   }
   if (MenuIconFixed.current) {
     MenuIconFixed.current.addEventListener("click", function () {
-      if (menuShow) {
+      if (getMenuState.isShow) {
         MenuIconFixed.current!.classList.add("animate-menu");
       } else {
         MenuIconFixed.current!.classList.remove("animate-menu");
       }
     });
   }
+  // 監聽滾動
   useEffect(() => {
     window.addEventListener("scroll", function () {
       if (MenuIconFixed.current) {
         if (document.documentElement.scrollTop > News.current!.offsetTop) {
           MenuIconFixed.current!.style.top = "20px";
           MenuIconFixed.current!.style.left = "8%";
-          MenuIconFixed.current!.style.transition = ".3s"
+          MenuIconFixed.current!.style.transition = "1s";
           MenuIconFixed.current!.classList.remove("-top-1/2");
         } else {
           MenuIconFixed.current!.style.top = "-50%";
           MenuIconFixed.current!.style.left = "2%";
-          MenuIconFixed.current!.style.transition = ".3s";
+          MenuIconFixed.current!.style.transition = "1s";
         }
       }
     });
   }, []);
+
+  // 一掛載先傳送null 防止大圖顯示
+  useEffect(() => {
+    picIndex(null);
+  }, [picIndex]);
 
   return (
     <div className="overflow-hidden">
       {/* menu fixed*/}
       <div
         ref={MenuIconFixed}
-        className="fixed transition duration-300 -top-1/2 left-[2%] w-1/4 mb-10 animate-menu cursor-pointer z-50 lg:w-[8%]"
+        className="fixed transition duration-1000 -top-1/2 left-[2%] w-1/4 mb-10 animate-menu cursor-pointer z-50 lg:w-[8%]"
       >
         <div
           className={
-            menuShow
+            getMenuState.isShow
               ? `transition duration-500 relative w-full pb-[100%] rotate-[20deg]`
               : `transition duration-500 relative w-full pb-[100%]`
           }
           onClick={() => {
-            menuShow ? setMenuShow(0) : setMenuShow(1);
+            getMenuState.isShow ? MenuIsShow(false) : MenuIsShow(true);
           }}
         >
           <Image
@@ -132,7 +180,7 @@ const Home: NextPage = () => {
         </div>
         <ul
           className={
-            menuShow
+            getMenuState.isShow
               ? `absolute top-[50%] left-[140%] transition duration-500 rotate-[40deg] scale-[85%] lg:scale-[120%] lg:rotate-[30deg] lg:top-[30%]`
               : `absolute top-1/4 left-1/2 -z-10 opacity-0 transition duration-500 scale-50`
           }
@@ -172,12 +220,12 @@ const Home: NextPage = () => {
           >
             <div
               className={
-                menuShow
+                getMenuState.isShow
                   ? `transition duration-500 relative w-full pb-[100%] rotate-[20deg]`
                   : `transition duration-500 relative w-full pb-[100%]`
               }
               onClick={() => {
-                menuShow ? setMenuShow(0) : setMenuShow(1);
+                getMenuState.isShow ? MenuIsShow(false) : MenuIsShow(true);
               }}
             >
               <Image
@@ -189,7 +237,7 @@ const Home: NextPage = () => {
             </div>
             <ul
               className={
-                menuShow
+                getMenuState.isShow
                   ? `absolute -top-0 left-[120%] transition duration-500 scale-100`
                   : `absolute top-1/4 left-1/2 -z-10 opacity-0 transition duration-500 scale-50`
               }
@@ -230,12 +278,12 @@ const Home: NextPage = () => {
         >
           <div
             className={
-              menuShow
+              getMenuState.isShow
                 ? `transition duration-500 relative w-full pb-[100%] rotate-[20deg]`
                 : `transition duration-500 relative w-full pb-[100%]`
             }
             onClick={() => {
-              menuShow ? setMenuShow(0) : setMenuShow(1);
+              getMenuState.isShow ? MenuIsShow(false) : MenuIsShow(true);
             }}
           >
             <Image
@@ -247,7 +295,7 @@ const Home: NextPage = () => {
           </div>
           <ul
             className={
-              menuShow
+              getMenuState.isShow
                 ? `absolute -top-[25%] left-[70%] transition duration-500 rotate-[-28deg] scale-100`
                 : `absolute top-1/4 left-1/2 -z-10 opacity-0 transition duration-500 scale-50`
             }
@@ -361,7 +409,7 @@ const Home: NextPage = () => {
                     key={i}
                     className="relative w-full pb-[100%] overflow-hidden rounded-full even:animate-shape2 odd:animate-shape3 cursor-pointer"
                     onClick={() => {
-                      setShowPic(i);
+                      picIndex(i);
                     }}
                   >
                     <Image
@@ -376,13 +424,13 @@ const Home: NextPage = () => {
               })}
             </div>
             {/* mobile */}
-            <BottomSliderMobile setShowPic={setShowPic} />
+            <BottomSliderMobile />
           </div>
 
           <div>
             <div
               className={
-                showPic !== null
+                getPicIndex !== null
                   ? `transition duration-500 flex flex-col justify-center items-center fixed z-40 top-0 left-0 w-screen h-screen bg-white`
                   : `transition duration-500 flex flex-col justify-center items-center fixed top-0 left-0 w-screen h-screen opacity-0 -z-20`
               }
@@ -390,12 +438,12 @@ const Home: NextPage = () => {
               <div
                 className="absolute top-1 right-5 text-3xl text-gray-300 cursor-pointer lg:top-3 lg:right-10 lg:text-[60px]"
                 onClick={() => {
-                  setShowPic(null);
+                  picIndex(null);
                 }}
               >
                 x
               </div>
-              <BigSlider showPic={showPic} setShowPic={setShowPic} />
+              <BigSlider />
               <div className="text-sky-500 text-[30px]">
                 <BsTwitter />
               </div>
