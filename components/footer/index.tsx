@@ -1,6 +1,6 @@
 import React from "react";
 import Link from "next/link";
-import { FiInstagram } from "react-icons/Fi";
+import { FiInstagram } from "react-icons/fi";
 
 const footer = ["HOME", "NEWS", "SCHEDULE", "PROFILE", "GALLERY", "CONTACT"];
 
