@@ -59,14 +59,16 @@ function Header() {
     <header className="relative pb-28 w-[1120px] max-w-full mx-auto p-header lg:flex lg:justify-end lg:px-[100px] pt-[50px]">
       <div className="flex justify-between mb-5 lg:w-1/2 lg:flex-col lg:justify-center lg:items-center">
         {/* 標題 */}
-        <div>
-          <h1 className="text-[25px] tracking-[10.2px] font-medium lg:text-[42px]">
-            高山一実
-          </h1>
-          <p className="text-xs tracking-[4.8px] font-medium lg:text-sm lg:text-center lg:mb-3">
-            OFFICIAL SITE
-          </p>
-        </div>
+        <Link href="/">
+          <a className="transition duration-300 hover:opacity-70">
+            <h1 className="text-[25px] tracking-[10.2px] font-medium lg:text-[42px]">
+              高山一実
+            </h1>
+            <p className="text-xs tracking-[4.8px] font-medium lg:text-sm lg:text-center lg:mb-3">
+              OFFICIAL SITE
+            </p>
+          </a>
+        </Link>
         {/* menu computer */}
         <div
           ref={MenuIcon}
@@ -98,27 +100,39 @@ function Header() {
           >
             {menuList.map((v, i) => {
               return (
-                // 最前方定義相同的css 後方不同nth分別定義
-                <li
-                  key={i}
-                  className={`absolute origin-left bg-white px-2 tracking-[2px] 
+                <Link href="/" key={i}>
+                  {/* 最前方定義相同的css 後方不同nth分別定義 */}
+                  <a
+                    className={`absolute origin-left bg-white px-2 tracking-[2px] 
                   one:-top-3 one:-left-6 one:rotate-[-40deg] two:top-[1.5rem] two:left-[-0.5rem] two:rotate-[-25deg] 
                   three:top-16 three:left-[0.2rem] three:rotate-[-10deg] 
                   four:top-[6.5rem] four:left-[0.2rem] four:rotate-[10deg] 
                   five:top-[9rem] five:left-[-0.5rem] five:rotate-[25deg]`}
-                >
-                  {v}
-                </li>
+                    onClick={() => {
+                      MenuIsShow(false);
+                    }}
+                  >
+                    <li>{v}</li>
+                  </a>
+                </Link>
               );
             })}
           </ul>
         </div>
         {/* ig icon */}
-        <Link href="/">
-          <a className="text-[30px] px-[5px]">
-            <FiInstagram />
-          </a>
-        </Link>
+        {/* 
+        target="_blank"
+        rel="noreferrer" 
+        開啟新分頁
+          */}
+        <a
+          href="https://www.instagram.com/takayama.kazumi.official/"
+          className="transition duration-300 text-[30px] px-[5px] hover:opacity-70"
+          target="_blank"
+          rel="noreferrer"
+        >
+          <FiInstagram />
+        </a>
       </div>
       {/* 背景雲 */}
       {/* 自定義動畫 */}
@@ -157,17 +171,21 @@ function Header() {
         >
           {menuList.map((v, i) => {
             return (
-              // 最前方定義相同的css 後方不同nth分別定義
-              <li
-                key={i}
-                className={`absolute origin-left bg-white px-2 tracking-[2px] 
+              <Link href="/" key={i}>
+                {/* 最前方定義相同的css 後方不同nth分別定義 */}
+                <a
+                  className={`absolute origin-left bg-white px-2 tracking-[2px] 
                   one:-top-3 one:-left-6 one:rotate-[-40deg] two:top-[1.5rem] two:left-[-0.5rem] two:rotate-[-25deg] 
                   three:top-16 three:left-[0.2rem] three:rotate-[-10deg] 
                   four:top-[6.5rem] four:left-[0.2rem] four:rotate-[10deg] 
                   five:top-[9rem] five:left-[-0.5rem] five:rotate-[25deg]`}
-              >
-                {v}
-              </li>
+                  onClick={() => {
+                    MenuIsShow(false);
+                  }}
+                >
+                  <li>{v}</li>
+                </a>
+              </Link>
             );
           })}
         </ul>

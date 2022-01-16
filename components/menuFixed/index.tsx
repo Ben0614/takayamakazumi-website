@@ -1,5 +1,6 @@
 import React, { useRef, useEffect, useCallback } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import { useDispatch, useSelector } from "react-redux";
 
 interface Menu {
@@ -85,7 +86,7 @@ function MenuFixed() {
         }}
       >
         <Image
-          src="/images/menu_illust2.png"
+          src="http://localhost:3000/images/menu_illust2.png"
           alt=""
           layout="fill"
           sizes="40vw"
@@ -100,16 +101,21 @@ function MenuFixed() {
       >
         {menuList.map((v, i) => {
           return (
-            <li
-              key={i}
-              className={`absolute origin-left bg-white px-2 tracking-[2px] 
+            <Link href="/" key={i}>
+              {/* 最前方定義相同的css 後方不同nth分別定義 */}
+              <a
+                className={`absolute origin-left bg-white px-2 tracking-[2px] 
                   one:-top-3 one:-left-6 one:rotate-[-40deg] two:top-[1.5rem] two:left-[-0.5rem] two:rotate-[-25deg] 
                   three:top-16 three:left-[0.2rem] three:rotate-[-10deg] 
                   four:top-[6.5rem] four:left-[0.2rem] four:rotate-[10deg] 
                   five:top-[9rem] five:left-[-0.5rem] five:rotate-[25deg]`}
-            >
-              {v}
-            </li>
+                onClick={() => {
+                  MenuIsShow(false);
+                }}
+              >
+                <li>{v}</li>
+              </a>
+            </Link>
           );
         })}
       </ul>

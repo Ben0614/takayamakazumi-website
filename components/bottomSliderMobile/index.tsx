@@ -5,7 +5,7 @@ import { useDispatch } from "react-redux";
 
 function BottomSliderMobile() {
   const dispatch = useDispatch();
-  // 發送照片的index
+  // 發送圖片的index
   const picIndex = useCallback(
     (i) => {
       dispatch({
@@ -41,7 +41,7 @@ function BottomSliderMobile() {
       <Slider {...settings}>
         {pic.map((v, i) => {
           return (
-            // px-2 讓照片之間有間隔
+            // px-2 讓圖片之間有間隔
             <div
               className="px-2"
               key={i}

@@ -9,7 +9,7 @@ interface Props {
 
 function RowItem(props: Props) {
   return (
-    <div className="mb-3 pb-3 border-b">
+    <div className="mb-3 pb-3 border-b transition duration-300 hover:opacity-70">
       <div className="flex items-center mb-1">
         <p className="text-area-date lg:text-[15px]">{props.v.date}</p>
         <p className="relative ml-2 py-1 px-3 bg-categoryTag">

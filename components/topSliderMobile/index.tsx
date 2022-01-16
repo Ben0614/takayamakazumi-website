@@ -16,7 +16,8 @@ function TopSliderMobile(): any {
 
   const settings = {
     arrows: false,
-    // 是否可以拖動變更圖片
+    // 是否可以拖動變更圖片 
+    // false無法拖動變更 也無法拖曳圖片
     swipe: false,
     // 滑鼠在圖片上是否仍然自動播放
     pauseOnHover: false,

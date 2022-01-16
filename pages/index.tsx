@@ -13,7 +13,7 @@ import RowItem from "../components/rowItem";
 import Header from "../components/header";
 import Footer from "../components/footer";
 
-// 照片path
+// 圖片path
 // 不要加http://localhost:3000 否則在vercel會無法顯示
 const pic = [
   "/images/smallGallery/pic-01.jpg",
@@ -26,7 +26,7 @@ const pic = [
   "/images/smallGallery/pic-08.jpg",
 ];
 
-// 照片index
+// 圖片index
 interface SliderIndex {
   sliderIndex: {
     index: number;
@@ -95,7 +95,7 @@ const Home: NextPage = () => {
 
   // console.log("getMenuState", getMenuState.isShow);
 
-  // 一掛載先傳送照片index為null 防止大圖顯示
+  // 一掛載先傳送圖片index為null 防止大圖顯示
   useEffect(() => {
     picIndex(null);
   }, [picIndex]);
@@ -124,7 +124,13 @@ const Home: NextPage = () => {
           </div>
           <div className="mb-10">
             {news.map((v, i) => {
-              return <RowItem key={i} v={v} />;
+              return (
+                <Link href="/" key={i}>
+                  <a>
+                    <RowItem v={v} />
+                  </a>
+                </Link>
+              );
             })}
           </div>
           {/* view mobile */}
@@ -186,7 +192,7 @@ const Home: NextPage = () => {
             {/* mobile */}
             <BottomSliderMobile />
           </div>
-
+          {/* bigPicList */}
           <div>
             <div
               className={
@@ -204,9 +210,21 @@ const Home: NextPage = () => {
                 x
               </div>
               <BigSlider />
-              <div className="text-sky-500 text-[30px]">
+              {/* 
+                  target="_blank"
+                  rel="noreferrer" 
+                  開啟新分頁
+              */}
+              <a
+                href={`https://twitter.com/share?text=GALLERY%EF%BD%9C%E9%AB%98%E5%B1%B1%E4%B8%80%E5%AE%9F%E3%82%AA%E3%83%95%E3%82%A3%E3%82%B7%E3%83%A3%E3%83%AB%E3%82%B5%E3%82%A4%E3%83%88&hashtags=%E9%AB%98%E5%B1%B1%E4%B8%80%E5%AE%9F&url=https://kazumitakayama.com/s/m11/gallery?image=${
+                  getPicIndex + 1
+                }`}
+                target="_blank"
+                rel="noreferrer"
+                className="transition text-sky-500 text-[30px] hover:opacity-70"
+              >
                 <BsTwitter />
-              </div>
+              </a>
             </div>
           </div>
           {/* view mobile */}

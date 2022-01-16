@@ -1,7 +1,9 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState, useRef, useCallback } from "react";
 import Image from "next/image";
 import Slider from "react-slick";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { MdArrowBackIosNew } from "react-icons/md";
+import { MdArrowForwardIos } from "react-icons/md";
 
 interface SliderIndex {
   sliderIndex: {
@@ -21,21 +23,69 @@ const bigPic = [
 ];
 
 function BigSlider() {
-  // 獲取被點擊的照片的index
+  // 控制按鈕禁用
+  const [buttonState, setButtonState] = useState(false);
+
+  // 禁止按鈕禁用函式
+  // 圖片移動速度為500 這邊禁用時間設定為600
+  // 如果不設定禁用 在連續快速按按鈕時會出bug
+  const ButtonHandle = () => {
+    setButtonState(true);
+    setTimeout(() => {
+      setButtonState(false);
+    }, 600);
+  };
+
+  // 獲取被點擊的圖片的index
   const getPicIndex = useSelector((state: SliderIndex) => {
     return state.sliderIndex.index;
   });
 
+  // console.log(getPicIndex);
+
+  const dispatch = useDispatch();
+
+  // 點擊上下紐 傳送新的index到redex
+  const prevIndex = useCallback(() => {
+    dispatch({
+      type: "pic_index",
+      payload: {
+        index: getPicIndex - 1,
+      },
+    });
+  }, [dispatch, getPicIndex]);
+  const nextIndex = useCallback(() => {
+    dispatch({
+      type: "pic_index",
+      payload: {
+        index: getPicIndex + 1,
+      },
+    });
+  }, [dispatch, getPicIndex]);
+
   // ref slider
   const slider = useRef<Slider>(null);
 
-  // 一掛載就根據index移動到指定的照片
+  // 上按鈕總控制
+  const previous = () => {
+    slider.current!.slickPrev();
+    prevIndex();
+    ButtonHandle();
+  };
+  // 下按鈕總控制
+  const next = () => {
+    slider.current!.slickNext();
+    nextIndex();
+    ButtonHandle();
+  };
+
+  // 一掛載就根據index移動到指定的圖片
   useEffect(() => {
     slider.current!.slickGoTo(getPicIndex);
   }, [getPicIndex]);
 
   const settings = {
-    arrows: true,
+    arrows: false,
     // 滑鼠在圖片上是否仍然自動播放
     pauseOnHover: false,
     // 淡入淡出
@@ -43,32 +93,58 @@ function BigSlider() {
     speed: 500,
     slidesToShow: 1,
     slidesToScroll: 1,
+    infinite: false,
+    // 是否可以拖動變更圖片
+    // false無法拖動變更 也無法拖曳圖片
+    swipe: false,
   };
   return (
-    <Slider
-      ref={slider}
-      {...settings}
-      className="big-slider w-[calc(100%-30px)] lg:w-1/4"
-    >
-      {bigPic.map((v, i) => {
-        return (
-          <div
-            key={i}
-            className={
-              "relative w-full pb-[130%] mx-auto mb-5 lg:w-1/4 lg:pb-[130%]"
-            }
-          >
-            <Image
-              src={v}
-              alt=""
-              layout="fill"
-              objectFit="cover"
-              sizes="80vw"
-            />
-          </div>
-        );
-      })}
-    </Slider>
+    <div className="relative big-slider w-[calc(100%-30px)] lg:w-1/4">
+      <Slider ref={slider} {...settings}>
+        {bigPic.map((v, i) => {
+          return (
+            <div
+              key={i}
+              className={
+                "relative w-full pb-[130%] mx-auto mb-5 lg:w-1/4 lg:pb-[130%]"
+              }
+            >
+              {/* draggable="false" 禁止拖曳圖片 */}
+              <Image
+                src={v}
+                alt=""
+                layout="fill"
+                objectFit="cover"
+                sizes="80vw"
+              />
+            </div>
+          );
+        })}
+      </Slider>
+      {/* 自訂上下按紐 */}
+      {getPicIndex <= 0 ? (
+        ""
+      ) : (
+        <button
+          disabled={buttonState}
+          className="absolute top-1/2 left-[5%]  -translate-y-1/2 lg:-left-1/3"
+          onClick={previous}
+        >
+          <MdArrowBackIosNew className="transition text-3xl text-[#c9dce4] hover:text-[#97bbc9]" />
+        </button>
+      )}
+      {getPicIndex >= bigPic.length - 1 ? (
+        ""
+      ) : (
+        <button
+          disabled={buttonState}
+          className="absolute top-1/2 -translate-y-1/2 right-[5%] lg:-right-1/3"
+          onClick={next}
+        >
+          <MdArrowForwardIos className="transition text-3xl text-[#c9dce4] hover:text-[#97bbc9]" />
+        </button>
+      )}
+    </div>
   );
 }
 
