@@ -2,7 +2,7 @@ import React, { useRef, useCallback } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { useDispatch, useSelector } from "react-redux";
-import { FiInstagram } from "react-icons/Fi";
+import { FiInstagram } from "react-icons/fi";
 import TopSliderMobile from "../topSliderMobile";
 
 interface Menu {

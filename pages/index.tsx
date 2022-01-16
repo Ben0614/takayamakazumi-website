@@ -3,7 +3,7 @@ import { useEffect, useState, useRef, useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Image from "next/image";
 import Link from "next/link";
-import { BsTwitter } from "react-icons/Bs";
+import { BsTwitter } from "react-icons/bs";
 import BottomSliderMobile from "../components/bottomSliderMobile";
 import BigSlider from "../components/bigSlider";
 import ViewAll from "../components/viewAll";
