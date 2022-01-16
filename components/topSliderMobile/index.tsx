@@ -4,14 +4,14 @@ import Slider from "react-slick";
 
 function TopSliderMobile(): any {
   const pic = [
-    "http://localhost:3000/images/topSmallPic/pic-01.jpg",
-    "http://localhost:3000/images/topSmallPic/pic-02.jpg",
-    "http://localhost:3000/images/topSmallPic/pic-03.jpg",
+    "/images/topSmallPic/pic-01.jpg",
+    "/images/topSmallPic/pic-02.jpg",
+    "/images/topSmallPic/pic-03.jpg",
   ];
   const picComputer = [
-    "http://localhost:3000/images/topBigPic/pic-01.jpg",
-    "http://localhost:3000/images/topBigPic/pic-02.jpg",
-    "http://localhost:3000/images/topBigPic/pic-03.jpg",
+    "/images/topBigPic/pic-01.jpg",
+    "/images/topBigPic/pic-02.jpg",
+    "/images/topBigPic/pic-03.jpg",
   ];
 
   const settings = {

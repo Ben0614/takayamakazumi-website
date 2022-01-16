@@ -1,5 +1,6 @@
 import React from "react";
 import Link from "next/link";
+// react-icons/fi fi要小寫 否則vercel build會失敗
 import { FiInstagram } from "react-icons/fi";
 
 const footer = ["HOME", "NEWS", "SCHEDULE", "PROFILE", "GALLERY", "CONTACT"];

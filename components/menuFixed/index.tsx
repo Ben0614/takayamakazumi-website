@@ -85,7 +85,7 @@ function MenuFixed() {
         }}
       >
         <Image
-          src="http://localhost:3000/images/menu_illust2.png"
+          src="/images/menu_illust2.png"
           alt=""
           layout="fill"
           sizes="40vw"

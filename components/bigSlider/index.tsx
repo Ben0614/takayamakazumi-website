@@ -10,16 +10,15 @@ interface SliderIndex {
 }
 
 const bigPic = [
-  "http://localhost:3000/images/bigGallery/pic-01.jpg",
-  "http://localhost:3000/images/bigGallery/pic-02.jpg",
-  "http://localhost:3000/images/bigGallery/pic-03.jpg",
-  "http://localhost:3000/images/bigGallery/pic-04.jpg",
-  "http://localhost:3000/images/bigGallery/pic-05.jpg",
-  "http://localhost:3000/images/bigGallery/pic-06.jpg",
-  "http://localhost:3000/images/bigGallery/pic-07.jpg",
-  "http://localhost:3000/images/bigGallery/pic-08.jpg",
+  "/images/bigGallery/pic-01.jpg",
+  "/images/bigGallery/pic-02.jpg",
+  "/images/bigGallery/pic-03.jpg",
+  "/images/bigGallery/pic-04.jpg",
+  "/images/bigGallery/pic-05.jpg",
+  "/images/bigGallery/pic-06.jpg",
+  "/images/bigGallery/pic-07.jpg",
+  "/images/bigGallery/pic-08.jpg",
 ];
-
 
 function BigSlider() {
   // 獲取被點擊的照片的index

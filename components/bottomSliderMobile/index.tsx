@@ -17,14 +17,14 @@ function BottomSliderMobile() {
   );
 
   const pic = [
-    "http://localhost:3000/images/smallGallery/pic-01.jpg",
-    "http://localhost:3000/images/smallGallery/pic-02.jpg",
-    "http://localhost:3000/images/smallGallery/pic-03.jpg",
-    "http://localhost:3000/images/smallGallery/pic-04.jpg",
-    "http://localhost:3000/images/smallGallery/pic-05.jpg",
-    "http://localhost:3000/images/smallGallery/pic-06.jpg",
-    "http://localhost:3000/images/smallGallery/pic-07.jpg",
-    "http://localhost:3000/images/smallGallery/pic-08.jpg",
+    "/images/smallGallery/pic-01.jpg",
+    "/images/smallGallery/pic-02.jpg",
+    "/images/smallGallery/pic-03.jpg",
+    "/images/smallGallery/pic-04.jpg",
+    "/images/smallGallery/pic-05.jpg",
+    "/images/smallGallery/pic-06.jpg",
+    "/images/smallGallery/pic-07.jpg",
+    "/images/smallGallery/pic-08.jpg",
   ];
   const settings = {
     centerMode: true,

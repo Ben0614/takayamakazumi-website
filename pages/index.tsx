@@ -3,6 +3,7 @@ import { useEffect, useState, useRef, useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Image from "next/image";
 import Link from "next/link";
+// react-icons/bs bs要小寫 否則vercel build會失敗
 import { BsTwitter } from "react-icons/bs";
 import BottomSliderMobile from "../components/bottomSliderMobile";
 import BigSlider from "../components/bigSlider";
@@ -13,15 +14,16 @@ import Header from "../components/header";
 import Footer from "../components/footer";
 
 // 照片path
+// 不要加http://localhost:3000 否則在vercel會無法顯示
 const pic = [
-  "http://localhost:3000/images/smallGallery/pic-01.jpg",
-  "http://localhost:3000/images/smallGallery/pic-02.jpg",
-  "http://localhost:3000/images/smallGallery/pic-03.jpg",
-  "http://localhost:3000/images/smallGallery/pic-04.jpg",
-  "http://localhost:3000/images/smallGallery/pic-05.jpg",
-  "http://localhost:3000/images/smallGallery/pic-06.jpg",
-  "http://localhost:3000/images/smallGallery/pic-07.jpg",
-  "http://localhost:3000/images/smallGallery/pic-08.jpg",
+  "/images/smallGallery/pic-01.jpg",
+  "/images/smallGallery/pic-02.jpg",
+  "/images/smallGallery/pic-03.jpg",
+  "/images/smallGallery/pic-04.jpg",
+  "/images/smallGallery/pic-05.jpg",
+  "/images/smallGallery/pic-06.jpg",
+  "/images/smallGallery/pic-07.jpg",
+  "/images/smallGallery/pic-08.jpg",
 ];
 
 // 照片index
@@ -226,7 +228,7 @@ const Home: NextPage = () => {
             <div className="relative mb-10 lg:w-1/2">
               <div className="relative w-3/4 pb-[100%] mx-auto rounded-[22%] overflow-hidden animate-prof_shape lg:w-full lg:pb-[130%]">
                 <Image
-                  src="http://localhost:3000/images/profile_pic.jpg"
+                  src="/images/profile_pic.jpg"
                   layout="fill"
                   objectFit="cover"
                   sizes="22vw"

@@ -2,6 +2,7 @@ import React, { useRef, useCallback } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { useDispatch, useSelector } from "react-redux";
+// react-icons/fi fi要小寫 否則vercel build會失敗
 import { FiInstagram } from "react-icons/fi";
 import TopSliderMobile from "../topSliderMobile";
 
@@ -82,7 +83,7 @@ function Header() {
             }}
           >
             <Image
-              src="http://localhost:3000/images/menu_illust2.png"
+              src="/images/menu_illust2.png"
               alt=""
               layout="fill"
               sizes="30vw"
@@ -141,7 +142,7 @@ function Header() {
           }}
         >
           <Image
-            src="http://localhost:3000/images/menu_illust2.png"
+            src="/images/menu_illust2.png"
             alt=""
             layout="fill"
             sizes="30vw"
